@@ -52,7 +52,3 @@ git clone git@github.com:fandredev/react-quiz.git
 
 E-mail: profissionalf.andre@gmail.com<br>
 Linkedin: https://www.linkedin.com/in/devfandre/<br>
-
-## Referencies
-
-- [IMBD](https://developer.imdb.com/)
