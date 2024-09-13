@@ -1,51 +1,58 @@
-# React + TypeScript + Vite
+# React Quiz
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The project uses the fake API from the JSON server to show some questions about the React Ecosystem.
 
-Currently, two official plugins are available:
+# Stack used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<img src="https://skillicons.dev/icons?i=typescript,react,yarn,git&theme=dark" alt="typescript,react,yarn,git" />
 
-## Expanding the ESLint configuration
+### Other tools:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- [Eslint](https://eslint.org/)
+- [Prettier](https://prettier.io/)
+- [asdf](https://asdf-vm.com/)
+- [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
+- [JSON server](https://www.npmjs.com/package/json-server)
 
-- Configure the top-level `parserOptions` property like this:
+## Authors
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- [Me](https://www.linkedin.com/in/devfandre/)
+
+## Clone this repo
+
+```
+git clone git@github.com:fandredev/react-quiz.git
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Go to directory
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
 ```
-# react-quiz
+ cd react-quiz
+```
+
+## Install dependencies
+
+```
+ yarn install
+```
+
+## Run API Server
+
+```
+ yarn run server
+```
+
+## Run WEB server
+
+```
+ yarn run dev
+```
+
+## :mailbox_with_no_mail: Contacts
+
+E-mail: profissionalf.andre@gmail.com<br>
+Linkedin: https://www.linkedin.com/in/devfandre/<br>
+
+## Referencies
+
+- [IMBD](https://developer.imdb.com/)
