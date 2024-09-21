@@ -1,6 +1,7 @@
 # React Quiz
 
-![React Quiz Image](quiz.png)
+![image](https://github.com/user-attachments/assets/32670858-cac3-4597-80ea-5992f4ee1c4a)
+
 The project uses the fake API from the JSON server to show some questions about the React Ecosystem.
 
 # Stack used
