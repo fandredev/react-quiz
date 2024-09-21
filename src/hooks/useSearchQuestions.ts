@@ -7,6 +7,7 @@ interface State {
   index: number
   answer: null | number
   points: number
+  highscore: number
 }
 
 const INITIAL_STATE: State = {
@@ -14,7 +15,8 @@ const INITIAL_STATE: State = {
   status: 'loading',
   index: 0,
   answer: null,
-  points: 0
+  points: 0,
+  highscore: 0
 };
 
 export type Action =
@@ -22,7 +24,8 @@ export type Action =
   | { type: 'dataFailed' }
   | { type: 'start' }
   | { type: 'newAnswer'; payload: number }
-  | { type: 'nextQuestion' };
+  | { type: 'nextQuestion' }
+  | { type: 'finished' };
 
 function reducer(state: State, action: Action): State {
   switch (action.type) {
@@ -53,13 +56,20 @@ function reducer(state: State, action: Action): State {
         answer: null
       }
     }
+    case 'finished': {
+      return {
+        ...state,
+        highscore: state.points > state.highscore ? state.points : state.highscore,
+        status: 'finished'
+      }
+    }
     default:
       throw new Error('Invalid action type');
   }
 }
 
 export function useSearchQuestions() {
-  const [{ status, questions, index, answer, points }, dispatch] = useReducer(reducer, INITIAL_STATE);
+  const [{ status, questions, index, answer, points, highscore }, dispatch] = useReducer(reducer, INITIAL_STATE);
 
   useEffect(() => {
     async function getQuestions() {
@@ -88,6 +98,7 @@ export function useSearchQuestions() {
     dispatchEvent: dispatch,
     index,
     answer,
-    points
+    points,
+    highscore
   };
 }
