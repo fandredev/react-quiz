@@ -7,9 +7,10 @@ import { useSearchQuestions } from './hooks/useSearchQuestions';
 import Question from './components/question';
 import NextButton from './components/next-button';
 import Progress from './components/progress';
+import FinishScreen from './components/finish-screen';
 
 export default function Quiz() {
-  const { questions, status, dispatchEvent, index, answer, points } =
+  const { questions, status, dispatchEvent, index, answer, points, highscore } =
     useSearchQuestions();
   const questionsLength = questions.length;
   const maxPossiblePoints = questions.reduce(
@@ -43,8 +44,20 @@ export default function Quiz() {
               dispatch={dispatchEvent}
               answer={answer}
             />
-            <NextButton dispatch={dispatchEvent} answer={answer} />
+            <NextButton
+              dispatch={dispatchEvent}
+              answer={answer}
+              numQuestions={questionsLength}
+              index={index}
+            />
           </>
+        )}
+        {status === 'finished' && (
+          <FinishScreen
+            points={points}
+            maxPossiblePoints={maxPossiblePoints}
+            highscore={highscore}
+          />
         )}
       </Main>
     </div>
