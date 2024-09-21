@@ -5,7 +5,7 @@ The project uses the fake API from the JSON server to show some questions about 
 
 # Stack used
 
-<img src="https://skillicons.dev/icons?i=typescript,react,yarn,git&theme=dark" alt="typescript,react,yarn,git" />
+<img src="https://skillicons.dev/icons?i=typescript,react,css,yarn,git&theme=dark" alt="typescript,react,css,yarn,git" />
 
 ### Other tools:
 
