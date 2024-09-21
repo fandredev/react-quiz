@@ -57,6 +57,7 @@ export default function Quiz() {
             points={points}
             maxPossiblePoints={maxPossiblePoints}
             highscore={highscore}
+            dispatch={dispatchEvent}
           />
         )}
       </Main>

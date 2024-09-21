@@ -25,7 +25,8 @@ export type Action =
   | { type: 'start' }
   | { type: 'newAnswer'; payload: number }
   | { type: 'nextQuestion' }
-  | { type: 'finished' };
+  | { type: 'finished' }
+  | { type: 'restart' };
 
 function reducer(state: State, action: Action): State {
   switch (action.type) {
@@ -61,6 +62,16 @@ function reducer(state: State, action: Action): State {
         ...state,
         highscore: state.points > state.highscore ? state.points : state.highscore,
         status: 'finished'
+      }
+    }
+    case 'restart': {
+      return {
+        ...state,
+        status: 'ready',
+        index: 0,
+        answer: null,
+        points: 0,
+        highscore: 0
       }
     }
     default:

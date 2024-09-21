@@ -1,15 +1,18 @@
 import { useEffect, useState } from 'react';
+import { Action } from '../hooks/useSearchQuestions';
 
 interface FinishScreenProps {
   points: number;
   maxPossiblePoints: number;
   highscore: number;
+  dispatch: React.Dispatch<Action>;
 }
 
 export default function FinishScreen({
   points,
   maxPossiblePoints,
   highscore,
+  dispatch,
 }: FinishScreenProps) {
   const percentage = Math.round((points / maxPossiblePoints) * 100);
   const [emoji, setEmoji] = useState('');
@@ -39,6 +42,13 @@ export default function FinishScreen({
         {maxPossiblePoints} points. That's {Math.ceil(percentage)}%!
       </p>
       <p className="highscore">Highscore: {highscore} points</p>
+
+      <button
+        className="btn btn-ui"
+        onClick={() => dispatch({ type: 'restart' })}
+      >
+        Restart
+      </button>
     </>
   );
 }
