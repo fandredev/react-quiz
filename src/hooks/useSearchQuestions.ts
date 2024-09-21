@@ -8,16 +8,8 @@ interface State {
   answer: null | number
   points: number
   highscore: number
+  secondsRemaining: number | null
 }
-
-const INITIAL_STATE: State = {
-  questions: [],
-  status: 'loading',
-  index: 0,
-  answer: null,
-  points: 0,
-  highscore: 0
-};
 
 export type Action =
   | { type: 'dataReceived'; payload: Question[] }
@@ -26,7 +18,21 @@ export type Action =
   | { type: 'newAnswer'; payload: number }
   | { type: 'nextQuestion' }
   | { type: 'finished' }
-  | { type: 'restart' };
+  | { type: 'restart' }
+  | { type: 'tick' }
+
+const INITIAL_STATE: State = {
+  questions: [],
+  status: 'loading',
+  index: 0,
+  answer: null,
+  points: 0,
+  highscore: 0,
+  secondsRemaining: null
+};
+
+const SECS_PER_QUESTION = 30;
+
 
 function reducer(state: State, action: Action): State {
   switch (action.type) {
@@ -40,6 +46,7 @@ function reducer(state: State, action: Action): State {
       return {
         ...state,
         status: 'active',
+        secondsRemaining: state.questions.length * SECS_PER_QUESTION
       };
     }
     case 'newAnswer': {
@@ -71,7 +78,16 @@ function reducer(state: State, action: Action): State {
         index: 0,
         answer: null,
         points: 0,
-        highscore: 0
+        highscore: 0,
+        secondsRemaining: 10
+      }
+    }
+
+    case 'tick': {
+      return {
+        ...state,
+        secondsRemaining: (state.secondsRemaining ?? 0) - 1,
+        status: state.secondsRemaining === 0 ? 'finished' : state.status
       }
     }
     default:
@@ -80,7 +96,7 @@ function reducer(state: State, action: Action): State {
 }
 
 export function useSearchQuestions() {
-  const [{ status, questions, index, answer, points, highscore }, dispatch] = useReducer(reducer, INITIAL_STATE);
+  const [{ status, questions, index, answer, points, highscore, secondsRemaining }, dispatch] = useReducer(reducer, INITIAL_STATE);
 
   useEffect(() => {
     async function getQuestions() {
@@ -110,6 +126,7 @@ export function useSearchQuestions() {
     index,
     answer,
     points,
-    highscore
+    highscore,
+    secondsRemaining
   };
 }

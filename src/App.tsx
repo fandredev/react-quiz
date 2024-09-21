@@ -8,10 +8,19 @@ import Question from './components/question';
 import NextButton from './components/next-button';
 import Progress from './components/progress';
 import FinishScreen from './components/finish-screen';
+import Timer from './components/timer';
 
 export default function Quiz() {
-  const { questions, status, dispatchEvent, index, answer, points, highscore } =
-    useSearchQuestions();
+  const {
+    questions,
+    status,
+    dispatchEvent,
+    index,
+    answer,
+    points,
+    highscore,
+    secondsRemaining,
+  } = useSearchQuestions();
   const questionsLength = questions.length;
   const maxPossiblePoints = questions.reduce(
     (prev, current) => prev + current.points,
@@ -44,12 +53,18 @@ export default function Quiz() {
               dispatch={dispatchEvent}
               answer={answer}
             />
-            <NextButton
-              dispatch={dispatchEvent}
-              answer={answer}
-              numQuestions={questionsLength}
-              index={index}
-            />
+            <footer>
+              <Timer
+                dispatch={dispatchEvent}
+                secondsRemaining={secondsRemaining}
+              />
+              <NextButton
+                dispatch={dispatchEvent}
+                answer={answer}
+                numQuestions={questionsLength}
+                index={index}
+              />
+            </footer>
           </>
         )}
         {status === 'finished' && (
