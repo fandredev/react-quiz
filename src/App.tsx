@@ -6,11 +6,16 @@ import StartScreen from './components/start-screen';
 import { useSearchQuestions } from './hooks/useSearchQuestions';
 import Question from './components/question';
 import NextButton from './components/next-button';
+import Progress from './components/progress';
 
 export default function Quiz() {
-  const { questions, status, dispatchEvent, index, answer } =
+  const { questions, status, dispatchEvent, index, answer, points } =
     useSearchQuestions();
   const questionsLength = questions.length;
+  const maxPossiblePoints = questions.reduce(
+    (prev, current) => prev + current.points,
+    0
+  );
 
   return (
     <div className="app">
@@ -27,6 +32,12 @@ export default function Quiz() {
 
         {status === 'active' && (
           <>
+            <Progress
+              index={index + 1}
+              numQuestions={questionsLength}
+              points={points}
+              maxPossiblePoints={maxPossiblePoints}
+            />
             <Question
               question={questions[index]}
               dispatch={dispatchEvent}
