@@ -10,6 +10,16 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
+
+  "description": "React Quiz App",
+  "author": {
+    "name": "Felipe André",
+    "email": "profissionalf.andre@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/fandredev/react-quiz/issues",
+    "email": "profissionalf.andre@gmail.com"
+  },
   "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
